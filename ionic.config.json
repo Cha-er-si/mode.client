@@ -1,0 +1,7 @@
+{
+  "name": "mode.client",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
