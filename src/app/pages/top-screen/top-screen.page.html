@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<ion-content>
+  <ion-text>
+    <p class="welcome-text">
+      Welcome to <span>Modernized Operational Digital Engine</span>
+    </p>
+  </ion-text>
+  <div class="menu-item-container">
+    @for (item of menuItems; track $index) {
+    <ion-card
+      class="menu-button"
+      color="primary"
+      button="true"
+      (click)="onMenuClick(item.page)"
+    >
+      <ion-icon [name]="item.icon"></ion-icon>
+      <p>{{item.text}}</p>
+    </ion-card>
+    }
+  </div>
+</ion-content>

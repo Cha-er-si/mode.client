@@ -1,0 +1,32 @@
+.welcome-text {
+  text-align: center;
+
+  span {
+    color: var(--ion-color-primary);
+    font-weight: bold;
+  }
+}
+
+.menu-item-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .menu-button {
+    width: 40dvw;
+    height: 25dvh;
+    display: grid;
+    place-items: center;
+    color: var(--ion-color-light-tint);
+
+    ion-icon {
+      font-size: 3rem;
+      display: flex;
+      justify-self: center;
+    }
+
+    p {
+      text-align: center;
+      font-size: 0.8rem;
+    }
+  }
+}
