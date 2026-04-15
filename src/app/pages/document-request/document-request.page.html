@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Document Request</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content></ion-content>
-
-<app-application-id-footer></app-application-id-footer>
+@if(didPageLoad){ <app-business-header></app-business-header>}
+<ion-content>
+  <div class="chat-flow-container">
+    @for (message of chatHistory; track $index) {
+    <div class="chat-message">
+      <ion-icon name="agent-icon"></ion-icon>
+      <p>{{message.text | message: chatMessages() }}</p>
+    </div>
+    }
+  </div>
+</ion-content>

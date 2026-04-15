@@ -1,0 +1,22 @@
+{
+  "questions": [
+    {
+      "questionId": "DCR01",
+      "type": "text",
+      "text": "dcr_00001",
+      "next": "DCR02"
+    },
+    {
+      "questionId": "DCR02",
+      "type": "TextInput",
+      "text": "dcr_00002",
+      "next": "DCR03"
+    },
+    {
+      "questionId": "DCR03",
+      "type": "text",
+      "text": "dcr_00003",
+      "next": -1
+    }
+  ]
+}

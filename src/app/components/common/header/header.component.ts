@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IONIC_COMPONENTS } from '../../shared/shared-component';
+import { IONIC_COMPONENTS } from '../../../shared/shared-component';
 
 @Component({
   selector: 'app-header',
@@ -9,6 +9,5 @@ import { IONIC_COMPONENTS } from '../../shared/shared-component';
 })
 export class HeaderComponent implements OnInit {
   constructor() {}
-
   ngOnInit() {}
 }

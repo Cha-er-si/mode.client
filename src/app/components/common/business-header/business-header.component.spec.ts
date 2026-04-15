@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { ApplicationIdFooterComponent } from './application-id-footer.component';
+import { BusinessHeaderComponent } from './business-header.component';
 
-describe('ApplicationIdFooterComponent', () => {
-  let component: ApplicationIdFooterComponent;
-  let fixture: ComponentFixture<ApplicationIdFooterComponent>;
+describe('BusinessHeaderComponent', () => {
+  let component: BusinessHeaderComponent;
+  let fixture: ComponentFixture<BusinessHeaderComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ApplicationIdFooterComponent ],
+      declarations: [ BusinessHeaderComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ApplicationIdFooterComponent);
+    fixture = TestBed.createComponent(BusinessHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

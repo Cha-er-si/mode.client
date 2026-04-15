@@ -1,13 +1,13 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
 import { HttpService } from '../../service/http-service/http.service';
 import { DeviceInfoService } from '../../service/device-info/device-info.service';
-import { URL } from 'src/app/const/url.const';
+import { URL } from 'src/app/models/url.model';
 import {
   AuthResponse,
   AuthTokenPayload,
 } from 'src/app/security/auth.interface';
 import { DateService } from '../../service/date/date.service';
-import { HttpStatusCode } from 'src/app/const/http.const';
+import { HttpStatusCode } from 'src/app/models/http.model';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -31,12 +31,13 @@ export class TokenService {
     this.authToken.set(authToken);
   }
 
-  public authTokenGenerate(): Observable<AuthResponse> {
+  public authTokenGenerate(businessCode: string): Observable<AuthResponse> {
     const osVersion: string = this.deviceInfoService.osVersion();
     const deviceId: string = this.deviceInfoService.deviceId();
     const payload: AuthTokenPayload = {
       osVersion,
       deviceId,
+      businessCode,
       dateToday: this.dateService.dateToday,
     };
 

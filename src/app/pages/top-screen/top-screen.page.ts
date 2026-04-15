@@ -6,6 +6,12 @@ import { HeaderComponent } from 'src/app/components';
 import { TokenService } from 'src/app/security/token-service/token.service';
 import { Router } from '@angular/router';
 import { LoadingController } from '@ionic/angular/standalone';
+import {
+  BusinessCodes,
+  getEnumValue,
+  MENU_ITEMS,
+  MenuItems,
+} from 'src/app/models/top-screen.model';
 
 @Component({
   selector: 'app-top-screen',
@@ -15,28 +21,7 @@ import { LoadingController } from '@ionic/angular/standalone';
   imports: [...IONIC_COMPONENTS, CommonModule, FormsModule, HeaderComponent],
 })
 export class TopScreenPage implements OnInit {
-  menuItems = [
-    {
-      text: 'Document Request',
-      icon: 'document-text-outline',
-      page: 'document-request',
-    },
-    {
-      text: 'Coming Soon...',
-      icon: 'alert-circle-outline',
-      page: 'na',
-    },
-    {
-      text: 'Coming Soon...',
-      icon: 'alert-circle-outline',
-      page: 'na',
-    },
-    {
-      text: 'Coming Soon...',
-      icon: 'alert-circle-outline',
-      page: 'na',
-    },
-  ];
+  public menuItems: MenuItems[] = MENU_ITEMS;
   constructor(
     private tokenService: TokenService,
     private router: Router,
@@ -50,12 +35,18 @@ export class TopScreenPage implements OnInit {
       spinner: 'bubbles',
     });
     loading.present();
-    this.tokenService.authTokenGenerate().subscribe({
-      next: () => {
-        this.loadingController.dismiss();
-        this.router.navigateByUrl(pageName);
-      },
-      error: (err) => console.error(err),
-    });
+    const menuId: string = this.menuItems.find(
+      (menu) => menu.page === pageName,
+    )!.id;
+    const businessCode = getEnumValue(menuId);
+    if (businessCode) {
+      this.tokenService.authTokenGenerate(businessCode).subscribe({
+        next: () => {
+          this.loadingController.dismiss();
+          this.router.navigateByUrl(pageName);
+        },
+        error: (err) => console.error(err),
+      });
+    }
   }
 }

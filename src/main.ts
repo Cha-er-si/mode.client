@@ -6,6 +6,7 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
+import { MessagePipe } from './app/pipes/message/message-pipe';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -14,5 +15,6 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     provideHttpClient(),
     DatePipe,
+    MessagePipe,
   ],
 });

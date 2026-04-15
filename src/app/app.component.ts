@@ -4,9 +4,7 @@ import { IONIC_COMPONENTS } from './shared/shared-component';
 import { addIcons } from 'ionicons';
 import * as ionIcons from 'ionicons/icons';
 import { DeviceInfoService } from './service/device-info/device-info.service';
-import { provideHttpClient } from '@angular/common/http';
-import { DatePipe } from '@angular/common';
-
+import * as customIcon from 'src/assets/icon/custom-icon';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +13,10 @@ import { DatePipe } from '@angular/common';
 })
 export class AppComponent {
   constructor(private deviceInfoService: DeviceInfoService) {
-    addIcons(ionIcons);
+    const agentIcon = addIcons({
+      ...ionIcons,
+      'agent-icon': customIcon.agentIcon,
+    });
     this.initializeApp();
   }
 

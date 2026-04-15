@@ -1,0 +1,9 @@
+<div class="chat-container">
+  @for (msg of chatHistory; track $index) {
+    <div>
+      <div [ngClass]="msg.from">
+        {{ msg.text }}
+      </div>
+    </div>
+  }
+</div>

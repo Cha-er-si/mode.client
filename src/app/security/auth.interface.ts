@@ -1,6 +1,7 @@
 export interface AuthTokenPayload {
   osVersion: string;
   deviceId: string;
+  businessCode: string;
   dateToday: string;
 }
 
