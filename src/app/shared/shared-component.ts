@@ -10,6 +10,9 @@ import {
   IonIcon,
   IonLabel,
   IonCard,
+  IonFooter,
+  IonInput,
+  IonRow,
 } from '@ionic/angular/standalone';
 
 export const IONIC_COMPONENTS = [
@@ -24,4 +27,7 @@ export const IONIC_COMPONENTS = [
   IonIcon,
   IonLabel,
   IonCard,
+  IonFooter,
+  IonInput,
+  IonRow,
 ];

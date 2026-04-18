@@ -1,9 +1,14 @@
-<div class="chat-container">
-  @for (msg of chatHistory; track $index) {
-    <div>
-      <div [ngClass]="msg.from">
-        {{ msg.text }}
+<ng-content>
+  <div class="chat-flow-container" autoScroll>
+    @for (msg of engine.messages; track $index) {
+      <div class="chat-message" [ngClass]="msg.from">
+        @if (msg.from === "question") {
+          <ion-icon name="agent-icon"></ion-icon>
+        }
+        <p [ngClass]="msg.from">
+          {{ msg.message  | message: chatMessage() : msg.from === 'answer' }}
+        </p>
       </div>
-    </div>
-  }
-</div>
+    }
+  </div>
+</ng-content>

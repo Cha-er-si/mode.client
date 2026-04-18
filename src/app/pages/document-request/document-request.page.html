@@ -1,11 +1,11 @@
-@if(didPageLoad){ <app-business-header></app-business-header>}
+@if(didPageLoad){
+<app-business-header></app-business-header>
+}
 <ion-content>
-  <div class="chat-flow-container">
-    @for (message of chatHistory; track $index) {
-    <div class="chat-message">
-      <ion-icon name="agent-icon"></ion-icon>
-      <p>{{message.text | message: chatMessages() }}</p>
-    </div>
-    }
-  </div>
+  @if(didPageLoad){
+  <app-chat [chatFlow]="chatFlow" [chatMessage]="chatMessages"></app-chat>
+  }
 </ion-content>
+<app-chat-footer
+  [placeholderTexts]="placeHolderTexts"
+></app-chat-footer>

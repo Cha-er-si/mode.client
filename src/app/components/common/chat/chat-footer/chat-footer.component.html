@@ -1,0 +1,9 @@
+@if (engine.presentInput) {
+  @if (currentQuestion?.type === "input") {
+    <app-chat-input
+      [placeholder]="processedPlaceholder"
+      (submit)="onAnswer($event)"
+    >
+    </app-chat-input>
+  }
+}

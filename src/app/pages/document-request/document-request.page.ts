@@ -1,13 +1,16 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BusinessHeaderComponent } from 'src/app/components';
-import { Flow, Question } from 'src/app/models/chat.model';
-import chatFlow from './document-request.json';
-import chatMessage from './document-request.messages.json';
-import { MessagePipe } from 'src/app/pipes/message/message-pipe';
+import { BusinessHeaderComponent, ChatComponent } from 'src/app/components';
+import { Flow } from 'src/app/models/chat.model';
 import { IONIC_COMPONENTS } from 'src/app/shared/shared-component';
+import { LoadingService } from 'src/app/service/loading-service/loading.service';
 
+import chatFlow from './document-request.json';
+import placeHolderText from './document-request.placeholders.json';
+import chatMessage from './document-request.messages.json';
+import { ChatFooterComponent } from 'src/app/components/common/chat/chat-footer/chat-footer.component';
+import { ChatEngineService } from 'src/app/service/chat-engine/chat-engine.service';
 @Component({
   selector: 'app-document-request',
   templateUrl: './document-request.page.html',
@@ -18,37 +21,25 @@ import { IONIC_COMPONENTS } from 'src/app/shared/shared-component';
     CommonModule,
     FormsModule,
     BusinessHeaderComponent,
-    MessagePipe,
+    ChatComponent,
+    ChatFooterComponent,
   ],
 })
 export class DocumentRequestPage implements OnInit {
   didPageLoad: boolean = false;
-  chatMessages: any = signal(chatMessage);
-  chatQuestions: Flow = chatFlow as Flow;
-  chatHistory: Question[] = [];
-  currentQuestion!: string;
-  constructor() {}
+  chatMessages: any = chatMessage;
+  placeHolderTexts: any = placeHolderText;
+  chatFlow: Flow = chatFlow as Flow;
+
+  constructor(
+    private loadingService: LoadingService,
+    public engine: ChatEngineService,
+  ) {}
 
   ngOnInit() {}
 
   ionViewDidEnter() {
-    this.loadQuestions();
     this.didPageLoad = true;
-  }
-
-  delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
-
-  async loadQuestions() {
-    const questions: Question[] = this.chatQuestions.questions;
-    for (let question of questions) {
-      if (question.type === 'text') {
-        this.chatHistory.push(question);
-
-        await this.delay(1000);
-      } else {
-        this.chatHistory.push(question);
-        break;
-      }
-    }
+    this.loadingService.dismiss();
   }
 }

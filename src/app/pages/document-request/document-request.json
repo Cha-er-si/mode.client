@@ -8,8 +8,9 @@
     },
     {
       "questionId": "DCR02",
-      "type": "TextInput",
+      "type": "input",
       "text": "dcr_00002",
+      "placeholder": "placeholder_0001",
       "next": "DCR03"
     },
     {
