@@ -6,4 +6,11 @@
     >
     </app-chat-input>
   }
+  @if (currentQuestion?.type === "selection") {
+    <app-chat-selection
+      [chatMessage]="chatMessage()"
+      (submit)="onAnswer($event)"
+    >
+    </app-chat-selection>
+  }
 }

@@ -1,0 +1,11 @@
+<ion-footer>
+  <ion-toolbar>
+    <ion-list>
+      @for (item of selectionItems; track $index) {
+        <ion-button expand="full" (click)="send(item)" color="primary">
+          <span>{{ item?.text | message: chatMessage() }}</span>
+        </ion-button>
+      }
+    </ion-list>
+  </ion-toolbar>
+</ion-footer>

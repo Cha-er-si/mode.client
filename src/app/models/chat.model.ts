@@ -1,9 +1,11 @@
 export interface Question {
   questionId: string;
   type: string;
+  name?: string;
   text: string;
   placeholder?: string;
   next?: string;
+  props?: any[];
 }
 
 export interface Flow {

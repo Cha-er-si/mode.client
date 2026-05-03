@@ -9,6 +9,7 @@
     {
       "questionId": "DCR02",
       "type": "input",
+      "name": "firstName",
       "text": "dcr_00002",
       "placeholder": "placeholder_0001",
       "next": "DCR03"
@@ -17,7 +18,35 @@
       "questionId": "DCR03",
       "type": "text",
       "text": "dcr_00003",
-      "next": -1
+      "next": "DCR04"
+    },
+    {
+      "questionId": "DCR04",
+      "type": "selection",
+      "text": "dcr_00004",
+      "name": "",
+      "props": [
+        {
+          "next": "DCR05",
+          "text": "dcr_selection_00001",
+          "value": "1"
+        },
+        {
+          "next": "DCR06",
+          "text": "dcr_selection_00002",
+          "value": "2"
+        }
+      ]
+    },
+    {
+      "questionId": "DCR05",
+      "type": "text",
+      "text": "dcr_00005"
+    },
+    {
+      "questionId": "DCR06",
+      "type": "text",
+      "text": "dcr_00006"
     }
   ]
 }

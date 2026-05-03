@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { Flow, InputTypes, Message, Question } from 'src/app/models/chat.model';
 
 @Injectable({
@@ -8,6 +8,7 @@ export class ChatEngineService {
   private flow!: Flow;
   private currentQuestion!: Question;
   private questionMap = new Map<string, Question>();
+  private state: WritableSignal<any> = signal(null);
 
   messages: Message[] = [];
   presentInput: boolean = false;
@@ -35,20 +36,34 @@ export class ChatEngineService {
    * @param value
    * @returns
    */
-  answer(value: string) {
+  answer(value: string, text?: string) {
     if (!value.trim()) return;
-    console.log({ answer: value });
-    this.pushAnswer(value);
+    this.pushAnswer(text ?? value);
+    const newAnswer = {
+      [this.currentQuestion.name as string]: {
+        value,
+        text: text ?? value,
+      },
+    };
+
+    this.state.update((item) => ({
+      ...item,
+      ...newAnswer,
+    }));
+
+    this.presentInput = false;
   }
 
   /**
    * Handles chat next flow
    * @returns Question | null
    */
-  async next(): Promise<Question | null> {
-    if (!this.currentQuestion?.next) return null;
+  async next(next?: string): Promise<Question | null> {
+    if (!this.currentQuestion?.next && !next) return null;
 
-    const nextQuestion = this.questionMap.get(this.currentQuestion.next);
+    const nextId = this.currentQuestion.next ?? next;
+    const nextQuestion = this.questionMap.get(nextId as string);
+    console.log(nextQuestion);
     if (!nextQuestion) return null;
 
     this.currentQuestion = nextQuestion;
@@ -64,6 +79,7 @@ export class ChatEngineService {
       this.presentInput = true;
     }
 
+    this.autoAdvance();
     return this.currentQuestion;
   }
 
@@ -86,10 +102,16 @@ export class ChatEngineService {
 
   private pushAnswer(answer: string) {
     this.messages.push({ from: 'answer', message: answer });
-    console.log({ messages: this.messages });
   }
 
   private delay(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  public replaceVariables(text: string): string {
+    const regex = /\{\{(.*?)\}\}/g;
+    return text.replace(regex, (_, key) => {
+      return this.state()[key.trim()]?.text || '';
+    });
   }
 }

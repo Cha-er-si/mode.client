@@ -1,5 +1,11 @@
 {
   "dcr_00001": "Hello there! Welcome to the Document Request Procedure.",
   "dcr_00002": "To start off, what is your first name?",
-  "dcr_00003": "Great! Hello {{firstName}}, this procedure will ask personal questions regarding yourself."
+  "dcr_00003": "Great! Hello {{firstName}}, this procedure will ask personal questions regarding yourself.",
+  "dcr_00004": "Are you ready?",
+  "dcr_00005": "Great! Let's begin.",
+  "dcr_00006": "Alright! Let's go back to top.",
+
+  "dcr_selection_00001": "Yes",
+  "dcr_selection_00002": "No"
 }
